@@ -18,9 +18,12 @@ class GUICalculator:
         self.input_text.set("")
 
     def evaluateEquation(self):
-        result = str(eval(self.expr))
+        try:
+            result = str(eval(self.expr))
+            self.expr = result
+        except ZeroDivisionError:
+            result = "Cannot Divide by Zero"
         self.input_text.set(result)
-        self.expr = result
 
     def removeLastExpr(self):
         self.expr = self.expr[:-1]
